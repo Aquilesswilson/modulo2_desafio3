@@ -79,11 +79,15 @@
 }  */
 
 
+body {
+    margin: 0px;
+    padding: 0px;
+}
 
-nav {
+nav#menu {
     background: rgb(61, 97, 113);
     color: white;
-    padding: 10px;
+
 
     /* CELULAR */
     @media(width<=576px) {
@@ -91,6 +95,7 @@ nav {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        padding: 10px;
 
         & #titulo {
             display: flex;
@@ -103,7 +108,7 @@ nav {
         }
 
         & #menu_escritorio {
-            display: none;
+            display: none;            
         }
     }
 
@@ -116,6 +121,7 @@ nav {
         /* border: 1px solid black; */
         /* grid-template-columns: 1fr 1fr 1fr; */
         grid-area: menu;
+        height: 85vh;
 
         & #titulo {
             display: flex;
@@ -136,12 +142,19 @@ nav {
         & #menu_escritorio {
             display: flex;
             flex-direction: column;
+            width: -webkit-fill-available;
 
             & a {
                 text-decoration: none;
                 text-align: center;
                 color: white;
                 padding: 6px;
+
+
+            }
+
+            & a:hover {
+                background-color: rgb(46, 130, 165);
             }
         }
 
@@ -153,7 +166,9 @@ nav {
 
 main {
     grid-area: seccion-principal;
-    padding: 10px;
+    /* padding: 10px; */
+    overflow-y: auto;
+    max-height: 100vh;
 }
 
 
@@ -184,28 +199,52 @@ img {
     justify-content: center;
 }
 
+.justify-content-end {
+    justify-content: end;
+}
+
+.align-items-center{
+    align-items: center;
+}
+
+section#navegacion{
+    padding-top: 10px;
+}
 
 footer {
     grid-area: pie-de-pagina;
     /* display: flex;
     flex-direction: column; */
-    background: rgb(61, 97, 113);
+    background: rgb(46, 130, 165);
     color: white;
     padding: 10px;
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;    
 
     & h3 {
         font-size: 20px;
-
     }
 
     & i {
         font-size: 20px;
         margin: 0px 5px;
     }
+
+    @media(width>=577px) {
+        gap: 10px;
+        height: 15vh;
+        /* max-height: min-content; */
+        justify-content: center;
+        
+        
+
+        & h3 {
+            font-size: 1rem;
+        }
+    }
 }
 
+/* Grid Celular*/
 div {
     display: grid;
     /* border: 1px solid black; */
@@ -217,17 +256,16 @@ div {
 }
 
 
-@media(min-width:562px) {
-    /* @media(width <=562px) { */
-
-
+@media(min-width:577px) {
+    /* @media(width <=576pxpx) { */
 
     div {
         grid-template-areas:
             "menu seccion-principal"
             "menu seccion-principal"
             /* "menu pie-de-pagina" */
-            "pie-de-pagina pie-de-pagina";
+            /* "pie-de-pagina pie-de-pagina "; */
+            "pie-de-pagina seccion-principal ";
         grid-template-columns: 1fr 10fr;
     }
 }
@@ -244,24 +282,54 @@ h1 {
     display: flex;
     flex-direction: column;
     padding: 1.0rem 2rem;
+
+    & p {
+        margin: 0px;
+    }
+
+    & #sel_ordenar_precio {
+        border-radius: 5px;
+        padding: 3px;
+    }
 }
 
 .text-center {
     text-align: center;
 }
 
+.lista-productos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 20px;
+    overflow-y: auto;
+    height: 70vh;
+
+    /* display: grid;
+    grid-template-columns: repeat(4, 1fr); */
+
+}
 
 .contenedor-producto {
-    margin: 1rem 2rem;
-    padding: 1rem 1rem;
-    /* background-color: #E2E2E2; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1 1 calc(20%);
+    max-width: calc(20%);
+    box-sizing: border-box;
     /* Mov.horizontal - Mov.vertical - nitidez - grosor*/
     box-shadow: 0px 0px 5px 2px lightblue;
 
     & .detalle-producto {
-        padding: 1rem 0rem;
+
         display: flex;
         flex-direction: column;
+        gap: 15px;
+
+        & h3 {
+            margin-top: 1rem;
+        }
 
         & .my-button {
             background-color: rgb(61, 97, 113);
@@ -283,6 +351,17 @@ h1 {
             background-color: rgb(61, 97, 113);
 
         }
+    }
+
+    @media(width <=992px) {
+        flex: 1 1 calc(50% - 25px);
+        max-width: calc(50% - 25px);
+    }
+
+    @media(width <=576px) {
+        flex: 1 1 100%;
+        max-width: 100%;
+        min-height: 50vh;
     }
 
 }
